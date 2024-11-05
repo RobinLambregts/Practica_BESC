@@ -1,0 +1,23 @@
+Struct position: (Gegeven)
+    float x
+    float y
+    float z
+
+Struct positionInArray:
+    *float x
+    *float y
+    *float z
+
+Array 1: Floats -> Effectieve waarden x,y,z
+
+Array 2: Structs positionInArray -> Waarden in structs moeten pointers zijn
+
+Programma:
+    1. Lees gegevens Struct
+    2. Zoek naar overeenkomst in Array 1 (Floats)
+    2a. Als overeenkomt -> Plaats adres uit Array 1 in nieuwe struct positionInArray
+    2b. Als niet overeenkomt -> Plaats float in Array 1 en zet adres hiervan in struct positionInArray
+    3. Sla struct positionInArray op in Array 2 (Structs)
+    4. Ga naar 1 zolang er nog structs zijn
+    5. Print Array 2 gestructureerd uit -> #index: x: #waarde y: #waarde z:#waarde
+

@@ -1,0 +1,50 @@
+Product:
+    Struct:
+        ProductId -> Uniek id product (= Index)
+        ProductCount -> hvl er van het product is
+
+
+Server:
+    Stock Bijhouden (Struct Product[])
+
+    Beantwoorden Vraag Consumers
+        Queue stelselmaten doorlopen(chronologisch)
+        Aantal te leveren >= Aantal in stock
+    Beantwoorden Vraag Producers
+        Queue stelselmaten doorlopen(chronologisch)
+        Aantal geleverd += Aantal in stock
+
+Consumers:
+    ConsumerId
+    ProductId om te kopen
+    ProductCount aantal om te kopen
+
+    Stuurt request naar Queue
+        Request Afgehandeld -> Opnieuw Request na random tijd
+        Request Faalde -> Busy Wait tot beschikbaar
+            Als Beschikbaar -> Consumer die het langst wachtte eerst
+
+Producers:
+    ProducerId
+    ProductId om te leveren
+    ProductCount aantal te leveren
+
+    Stuurt request naar Queue
+        Request Afgehandeld -> Opnieuw request na random tijd
+
+Queue:
+    Consumer/Producer
+
+Dynamisch:
+    Stock moet dynamisch zijn
+        -> initialize met bepaald aantal waarde
+        -> Meer producten toevoegen -> realloc?
+
+Mutex:
+    Als server bezig is -> struct product[i] locken
+
+
+Buffer voor niet gehandelde requests
+    Eerst kijken of buffer leeg is 
+        True -> verder met functie
+        False -> Afhandelen buffer
